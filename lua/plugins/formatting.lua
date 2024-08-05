@@ -1,5 +1,6 @@
-return { -- Autoformat
+return {
   'stevearc/conform.nvim',
+  enabled = require('nixCatsUtils').enableForCategory 'format',
   lazy = false,
   keys = {
     {

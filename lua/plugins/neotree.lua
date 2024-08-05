@@ -1,10 +1,7 @@
--- Neo-tree is a Neovim plugin to browse the file system
--- https://github.com/nvim-neo-tree/neo-tree.nvim
-
 return {
   'nvim-neo-tree/neo-tree.nvim',
   -- NOTE: nixCats: return true only if category is enabled, else false
-  enabled = require('nixCatsUtils').enableForCategory("kickstart-neo-tree"),
+  enabled = require('nixCatsUtils').enableForCategory 'general',
   version = '*',
   dependencies = {
     'nvim-lua/plenary.nvim',

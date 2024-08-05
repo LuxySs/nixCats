@@ -1,11 +1,13 @@
-return { -- Highlight, edit, and navigate code
+return {
   'nvim-treesitter/nvim-treesitter',
+  enabled = require('nixCatsUtils').enableForCategory 'general',
   build = require('nixCatsUtils').lazyAdd ':TSUpdate',
   opts = {
     -- NOTE: nixCats: use lazyAdd to only set these 2 options if nix wasnt involved.
     -- because nix already ensured they were installed.
-    ensure_installed = require('nixCatsUtils').lazyAdd { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+    ensure_installed = require('nixCatsUtils').lazyAdd { 'bash', 'c', 'cpp', 'lua', 'markdown', 'python', 'rust' },
     auto_install = require('nixCatsUtils').lazyAdd(true, false),
+    ignore_install = { 'latex' }, -- because I use vimtex instead
 
     highlight = {
       enable = true,

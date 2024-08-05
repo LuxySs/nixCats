@@ -1,7 +1,6 @@
-return { -- Autocompletion
+return {
   'hrsh7th/nvim-cmp',
-  -- NOTE: nixCats: return true only if category is enabled, else false
-  enabled = require('nixCatsUtils').enableForCategory 'kickstart-cmp',
+  enabled = require('nixCatsUtils').enableForCategory 'general',
   event = 'InsertEnter',
   dependencies = {
     {

@@ -128,71 +128,82 @@
           # this includes LSPs
           lspsAndRuntimeDeps = with pkgs; {
             general = [
-              universal-ctags
-              ripgrep
-              fd
-              stdenv.cc.cc
               nix-doc
+              ripgrep
+              universal-ctags
               lua-language-server
-              nixd
               stylua
+
+              clang-tools
+              rust-analyzer
+              pyright
+
+              markdownlint-cli
             ];
-            kickstart-debug = [ delve ];
-            kickstart-lint = [ markdownlint-cli ];
           };
 
           # This is for plugins that will load at startup without using packadd:
-          startupPlugins = with pkgs.vimPlugins; {
-            general = [
-              vim-sleuth
-              lazy-nvim
-              comment-nvim
-              gitsigns-nvim
-              which-key-nvim
-              telescope-nvim
-              telescope-fzf-native-nvim
-              telescope-ui-select-nvim
-              nvim-web-devicons
-              plenary-nvim
-              nvim-lspconfig
-              lazydev-nvim
-              fidget-nvim
-              conform-nvim
-              nvim-cmp
-              luasnip
-              cmp_luasnip
-              cmp-nvim-lsp
-              cmp-path
-              tokyonight-nvim
-              todo-comments-nvim
-              mini-nvim
-              nvim-treesitter.withAllGrammars
-              # This is for if you only want some of the grammars
-              # (nvim-treesitter.withPlugins (
-              #   plugins: with plugins; [
-              #     nix
-              #     lua
-              #   ]
-              # ))
-            ];
-            kickstart-debug = [
+          startupPlugins = {
+            debug = with pkgs.vimPlugins; [
               nvim-dap
               nvim-dap-ui
               nvim-dap-go
               nvim-nio
             ];
-            kickstart-indent_line = [ indent-blankline-nvim ];
-            kickstart-lint = [ nvim-lint ];
-            kickstart-autopairs = [ nvim-autopairs ];
-            kickstart-neo-tree = [
-              neo-tree-nvim
-              nui-nvim
-              # nixCats will filter out duplicate packages
-              # so you can put dependencies with stuff even if they're
-              # also somewhere else
-              nvim-web-devicons
-              plenary-nvim
-            ];
+            lint = with pkgs.vimPlugins; [ nvim-lint ];
+            format = with pkgs.vimPlugins; [ conform-nvim ];
+
+            markdown = with pkgs.vimPlugins; [ markdown-preview-nvim ];
+            latex = with pkgs.vimPlugins; [ vimtex ];
+
+            general = {
+              vimPlugins = {
+                cmp = with pkgs.vimPlugins; [
+                  cmp-nvim-lsp
+                  cmp-path
+                  cmp_luasnip
+                  friendly-snippets
+                  luasnip
+                  nvim-cmp
+                ];
+                general = with pkgs.vimPlugins; [
+                  catppuccin-nvim
+                  comment-nvim
+                  otter-nvim
+                  conform-nvim
+                  fidget-nvim
+                  gitsigns-nvim
+                  harpoon
+                  indent-blankline-nvim
+                  lazy-nvim
+                  lazydev-nvim
+                  mini-nvim
+                  lualine-nvim
+                  neo-tree-nvim
+                  nui-nvim
+                  nvim-autopairs
+                  nvim-lspconfig
+                  nvim-ufo
+                  nvim-web-devicons
+                  oil-nvim
+                  plenary-nvim
+                  telescope-fzf-native-nvim
+                  telescope-nvim
+                  telescope-ui-select-nvim
+                  todo-comments-nvim
+                  which-key-nvim
+
+                  nvim-treesitter.withAllGrammars
+                  # This is for if you only want some of the grammars
+                  # (nvim-treesitter.withPlugins (
+                  #   plugins: with plugins; [
+                  #     nix
+                  #     lua
+                  #   ]
+                  # ))
+                ];
+              };
+            };
           };
 
           # not loaded automatically at startup.
@@ -252,16 +263,14 @@
         # These are the names of your packages
         # you can include as many as you wish.
         nixCats =
-          { pkgs, ... }:
+          { pkgs, ... }@misc:
           {
-            # they contain a settings set defined above
-            # see :help nixCats.flake.outputs.settings
             settings = {
               wrapRc = true;
               # IMPORTANT:
               # you may not alias to nvim
               # your alias may not conflict with your other packages.
-              aliases = [ "vim" ];
+              aliases = [ ];
               # caution: this option must be the same for all packages.
               # or at least, all packages that are to be installed simultaneously.
               # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
@@ -269,36 +278,16 @@
             # and a set of categories that you want
             # (and other information to pass to lua)
             categories = {
-              general = true;
-              gitPlugins = true;
-              customPlugins = true;
               generalBuildInputs = true;
+              # general = true;
+              debug = true; # might be missing the actual debuggers (gdb etc)
+              lint = true;
+              format = true;
+              markdown = true;
+              latex = true;
+              general = true;
+              # general.vimPlugins.general = true;
               test = true;
-
-              kickstart-autopairs = true;
-              kickstart-neo-tree = true;
-              kickstart-debug = true;
-              kickstart-lint = true;
-              kickstart-indent_line = true;
-
-              # this kickstart extra didnt require any extra plugins
-              # so it doesnt have a category above.
-              # but we can still send the info from nix to lua that we want it!
-              kickstart-gitsigns = true;
-
-              # we can pass whatever we want actually.
-              have_nerd_font = false;
-
-              example = {
-                youCan = "add more than just booleans";
-                toThisSet = [
-                  "and the contents of this categories set"
-                  "will be accessible to your lua with"
-                  "nixCats('path.to.value')"
-                  "see :help nixCats"
-                  "and type :NixCats to see the categories set in nvim"
-                ];
-              };
             };
           };
       };

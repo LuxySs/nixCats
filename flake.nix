@@ -167,9 +167,9 @@
                   nvim-cmp
                 ];
                 general = with pkgs.vimPlugins; [
+                  alpha-nvim
                   catppuccin-nvim
                   comment-nvim
-                  otter-nvim
                   conform-nvim
                   fidget-nvim
                   gitsigns-nvim
@@ -177,8 +177,8 @@
                   indent-blankline-nvim
                   lazy-nvim
                   lazydev-nvim
-                  mini-nvim
                   lualine-nvim
+                  mini-nvim
                   neo-tree-nvim
                   nui-nvim
                   nvim-autopairs
@@ -186,6 +186,7 @@
                   nvim-ufo
                   nvim-web-devicons
                   oil-nvim
+                  otter-nvim
                   plenary-nvim
                   telescope-fzf-native-nvim
                   telescope-nvim

@@ -34,7 +34,7 @@ return {
       dashboard.button('q', '󰅚  Quit NVIM', ':qa<CR>'),
     }
 
-    dashboard.section.footer.val = "\nYou ain't  getting bitches till you stop using neovim"
+    dashboard.section.footer.val = "\nYou ain't getting bitches till you stop using neovim"
 
     alpha.setup(dashboard.opts)
   end,

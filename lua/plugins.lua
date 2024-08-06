@@ -11,6 +11,7 @@ return {
   require 'plugins.lsp',
   require 'plugins.lualine',
   require 'plugins.markdown',
+  require 'plugins.markview',
   require 'plugins.mini',
   require 'plugins.neotree',
   require 'plugins.oil',

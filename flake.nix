@@ -153,7 +153,10 @@
             lint = with pkgs.vimPlugins; [ nvim-lint ];
             format = with pkgs.vimPlugins; [ conform-nvim ];
 
-            markdown = with pkgs.vimPlugins; [ markdown-preview-nvim ];
+            markdown = with pkgs.vimPlugins; [
+              markdown-preview-nvim
+              markview-nvim
+            ];
             latex = with pkgs.vimPlugins; [ vimtex ];
 
             general = {

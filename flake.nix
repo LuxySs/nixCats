@@ -126,8 +126,8 @@
           # this section is for dependencies that should be available
           # at RUN TIME for plugins. Will be available to PATH within neovim terminal
           # this includes LSPs
-          lspsAndRuntimeDeps = with pkgs; {
-            general = [
+          lspsAndRuntimeDeps = {
+            general = with pkgs; [
               nix-doc
               ripgrep
               universal-ctags
@@ -135,11 +135,16 @@
               stylua
 
               clang-tools
-              rust-analyzer
+              gopls
               pyright
-
-              markdownlint-cli
+              rust-analyzer
             ];
+            debug = with pkgs; [
+              gcc
+              gdb
+              delve
+            ];
+            markdown = with pkgs; [ markdownlint-cli ];
           };
 
           # This is for plugins that will load at startup without using packadd:
@@ -176,13 +181,13 @@
                   conform-nvim
                   fidget-nvim
                   gitsigns-nvim
-                  harpoon
                   indent-blankline-nvim
                   lazy-nvim
                   lazydev-nvim
                   lualine-nvim
                   mini-nvim
                   neo-tree-nvim
+                  noice-nvim
                   nui-nvim
                   nvim-autopairs
                   nvim-lspconfig

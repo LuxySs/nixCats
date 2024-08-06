@@ -1,4 +1,4 @@
-return { -- otter.lua
+return {
   -- if this plugin ain't working, check that you've installed
   -- the treesitter grammar for the language
   'jmbuhr/otter.nvim',

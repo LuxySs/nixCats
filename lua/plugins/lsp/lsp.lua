@@ -177,6 +177,12 @@ return {
     -- NOTE: nixCats: nixd is not available on mason -> replace it with rnix + nil_ls.
     if require('nixCatsUtils').isNixCats then
       servers.nixd = {}
+      servers.cssls = { -- not sure whether this one is available without nix
+        cmd = {
+          'vscode-css-language-server',
+          '--stdio',
+        },
+      }
     else
       servers.rnix = {}
       servers.nil_ls = {}

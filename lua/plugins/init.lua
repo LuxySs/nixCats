@@ -7,4 +7,5 @@ return {
   require 'plugins.treesitter',
   require 'plugins.ui',
   require 'plugins.utils',
+  require 'plugins.writing',
 }

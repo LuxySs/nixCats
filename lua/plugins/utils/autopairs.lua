@@ -1,6 +1,6 @@
 return {
   'windwp/nvim-autopairs',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'utils',
   event = 'InsertEnter',
   -- Optional dependency
   dependencies = { 'hrsh7th/nvim-cmp' },

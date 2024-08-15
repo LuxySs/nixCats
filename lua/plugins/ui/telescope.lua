@@ -1,6 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'ui',
   event = 'VimEnter',
   branch = '0.1.x',
   dependencies = {

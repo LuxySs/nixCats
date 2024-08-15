@@ -1,6 +1,6 @@
 return {
   'stevearc/conform.nvim',
-  enabled = require('nixCatsUtils').enableForCategory 'format',
+  enabled = require('nixCatsUtils').enableForCategory 'lsp',
   lazy = false,
   keys = {
     {

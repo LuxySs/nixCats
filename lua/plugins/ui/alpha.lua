@@ -1,6 +1,6 @@
 return {
   'goolord/alpha-nvim',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'ui',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
   },

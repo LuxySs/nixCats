@@ -2,7 +2,7 @@ return {
   'numToStr/Comment.nvim',
   name = 'comment.nvim',
   event = 'VeryLazy',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'utils',
   opts = {
     ---Add a space b/w comment and the line
     padding = true,

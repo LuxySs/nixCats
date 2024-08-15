@@ -1,3 +1,15 @@
+require 'autocommands'
+require 'keymaps'
+require 'options'
+
+-- NOTE: nixCats: this just gives nixCats global command a default value
+-- so that it doesnt throw an error if you didnt install via nix.
+-- usage of both this setup and the nixCats command is optional,
+-- but it is very useful for passing info from nix to lua so you will likely use it at least once.
+require('nixCatsUtils').setup {
+  non_nix_value = true,
+}
+
 -- NOTE: nixCats: this is where we define some arguments for the lazy wrapper.
 local pluginList = nil
 local nixLazyPath = nil
@@ -6,6 +18,14 @@ if require('nixCatsUtils').isNixCats then
   -- it is called pluginList because we only need to pass in the names
   -- this list literally just tells lazy.nvim not to download the plugins in the list.
   pluginList = require('nixCatsUtils.lazyCat').mergePluginTables(allPlugins.start, allPlugins.opt)
+
+  -- it wasnt detecting that these were already added
+  -- because the names are slightly different from the url.
+  -- when that happens, add them to the list, then also specify the new name in the lazySpec
+  -- pluginList[ [[Comment.nvim]] ] = ''
+  -- pluginList[ [[LuaSnip]] ] = ''
+  -- alternatively you can do it all in the plugins spec instead of modifying this list.
+  -- just set the name and then add `dev = require('nixCatsUtils').lazyAdd(false, true)` to the spec
 
   -- HINT: to view the names of all plugins downloaded via nix, use the `:NixCats pawsible` command.
 
@@ -46,10 +66,20 @@ local lazyOptions = {
 }
 
 -- [[ Configure and install plugins ]]
--- nixCats: this the lazy wrapper.
-require('nixCatsUtils.lazyCat').setup(pluginList, nixLazyPath, require 'plugins', lazyOptions)
+--
+--  To check the current status of your plugins, run
+--    :Lazy
+--
+--  You can press `?` in this menu for help. Use `:q` to close the window
+--
+--  To update plugins you can run
+--    :Lazy update
+--
+-- NOTE: Here is where you install your plugins.
+-- NOTE: nixCats: this the lazy wrapper.
+require('nixCatsUtils.lazyCat').setup(pluginList, nixLazyPath, {
+  require 'plugins',
+}, lazyOptions)
 
-require 'options'
-require 'keymaps'
-require 'autocommands'
-require 'snippets'
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

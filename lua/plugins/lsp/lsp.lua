@@ -1,6 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'lsp',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
     {
@@ -35,7 +35,8 @@ return {
       opts = {
         library = {
           -- adds type hints for nixCats global
-          { path = require('nixCats').nixCatsPath .. '/lua', words = { 'nixCats' } },
+          -- THIS LINE FUCK UP IF YOU ARE NOT USING NIX
+          -- { path = require('nixCats').nixCatsPath .. '/lua', words = { 'nixCats' } },
         },
       },
     },

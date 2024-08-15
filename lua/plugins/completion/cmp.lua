@@ -1,6 +1,6 @@
 return {
   'hrsh7th/nvim-cmp',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'completion',
   event = 'InsertEnter',
   dependencies = {
     {

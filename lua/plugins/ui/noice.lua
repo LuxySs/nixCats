@@ -1,6 +1,6 @@
 return { -- Better looking interface to type commands
   'folke/noice.nvim',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'ui',
   dependencies = {
     'MunifTanjim/nui.nvim',
     'echasnovski/mini.nvim',

@@ -1,6 +1,6 @@
 return {
   'echasnovski/mini.nvim',
-  enabled = require('nixCatsUtils').enableForCategory 'general',
+  enabled = require('nixCatsUtils').enableForCategory 'utils',
   event = 'VeryLazy',
   config = function()
     -- Better Around/Inside textobjects
